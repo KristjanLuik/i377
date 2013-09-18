@@ -19,4 +19,14 @@
     <servlet-name>Hello</servlet-name>
     <url-pattern>/Hello</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SessionIdAtribute</display-name>
+    <servlet-name>SessionIdAtribute</servlet-name>
+    <servlet-class>esimene.servlet.SessionIdAtribute</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SessionIdAtribute</servlet-name>
+    <url-pattern>/SessionIdAtribute</url-pattern>
+  </servlet-mapping>
 </web-app>
