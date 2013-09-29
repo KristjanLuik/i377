@@ -20,7 +20,7 @@ public class HomePage extends HttpServlet {
 		response.getWriter().println("Tere! <br />");
 		
 		response.getWriter().println("Sinu sessiooni ID juhtumisi saab olema: "+request.getSession().getId()+"<br />");
-		response.getWriter().println("Müstilise atribuudi väärtus on : "+request.getParameter("param")+"<br />");
+		response.getWriter().println("Mystilise atribuudi v22rtus on : "+request.getParameter("param")+"<br />");
 	}
 
 }
