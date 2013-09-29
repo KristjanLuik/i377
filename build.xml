@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="IwantCandyJee" xmlns:ivy="antlib:org.apache.ivy.ant" default="compile">
+<project name="IwantCandyJee" xmlns:ivy="antlib:org.apache.ivy.ant" default="war">
 	<property name="src.dir" location="src" />
 	<property name="build.dir" location="build" />
 	<property name="classes.dir" location="${build.dir}/classes" />
