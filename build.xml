@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="IwantCandyJee" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="IwantCandyJee" xmlns:ivy="antlib:org.apache.ivy.ant" default="compile" >
 	<property name="src.dir" location="src" />
 	<property name="build.dir" location="build" />
 	<property name="classes.dir" location="${build.dir}/classes" />
@@ -35,7 +35,7 @@
 	</target>
 
 
-	<target name="compile" depends="clean, init">
+	<target name="compile" depends="clean, init, retrieve">
 		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" includeantruntime="false" classpathref="classpath" />
 
 	</target>
