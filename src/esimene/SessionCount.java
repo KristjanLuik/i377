@@ -19,7 +19,7 @@ public class SessionCount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().println("Aktiivseid sessioone on: "+ SessionCounterListener.getTotalActiveSessions() );
+		response.getWriter().println("count: "+ SessionCounterListener.getTotalActiveSessions());
 		
 	   
 	}

@@ -25,7 +25,8 @@ public class SessionCounterListener implements HttpSessionListener {
      */
     @Override
     public void sessionDestroyed(HttpSessionEvent arg0) {
-    	totalActiveSessions--;
+    		totalActiveSessions--;
+    	
         // TODO Auto-generated method stub
     }
     

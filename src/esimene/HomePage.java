@@ -17,10 +17,9 @@ public class HomePage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().println("Tere! <br />");
-		
-		response.getWriter().println("Sinu sessiooni ID juhtumisi saab olema: "+request.getSession().getId()+"<br />");
-		response.getWriter().println("Mystilise atribuudi v22rtus on : "+request.getParameter("param")+"<br />");
+		response.getWriter().println("Hello");
+		response.getWriter().println("Your session id is "+request.getSession().getId());
+		response.getWriter().println("Session attribute is "+request.getParameter("param"));
 	}
 
 }
