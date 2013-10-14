@@ -16,7 +16,7 @@ public class ServletContextInitializer implements ServletContextListener{
       
       if(!databaseExists()) {
          setupDao.createSchema();
-         setupDao.addTestData();
+      //   setupDao.addTestData();
       }
    }
 

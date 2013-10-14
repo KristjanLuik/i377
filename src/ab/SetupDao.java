@@ -11,10 +11,11 @@ public class SetupDao extends AbstractDao {
       executeSqlFromFile(getClassPathFile("schema.sql"));
    }
 
-   public void addTestData()  {
+/*   public void addTestData()  {
       executeSqlFromFile(getClassPathFile("data.sql"));
 
    }
+   */
 
    private String getClassPathFile(String fileName) {
       return getClass().getClassLoader().getResource(fileName).getFile();
