@@ -12,7 +12,7 @@ public class SetupDao extends AbstractDao {
    }
 
    public void addTestData()  {
-      executeSqlFromFile(getClassPathFile("naidisdata.sql"));
+      executeSqlFromFile(getClassPathFile("data.sql"));
 
    }
 

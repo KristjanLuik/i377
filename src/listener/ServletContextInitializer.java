@@ -14,10 +14,10 @@ public class ServletContextInitializer implements ServletContextListener{
       SetupDao setupDao = new SetupDao();
 
       
-   //   if(!databaseExists()) {
+      if(!databaseExists()) {
          setupDao.createSchema();
          setupDao.addTestData();
-    //  }
+      }
    }
 
    @Override
