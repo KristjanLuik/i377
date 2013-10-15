@@ -1,64 +1,68 @@
-<?xml version="1.0" ?>
-<!DOCTYPE project>
-<project name="IwantCandyJee" xmlns:ivy="antlib:org.apache.ivy.ant" default="war">
-	<property name="src.dir" location="src" />
-	<property name="build.dir" location="build" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="KristjanLuik" xmlns:ivy="antlib:org.apache.ivy.ant" default="war">
+	<presetdef name="javac">
+		<javac includeantruntime="false" />
+	</presetdef>
+	<!-- src build classes -->
+	<property name="basedir" location="." />
+	<property name="src.dir" location="${basedir}/src" />
+	<property name="tests.dir" location="${src.dir}/tests" />
+	<property name="build.dir" location="${basedir}/build" />
 	<property name="classes.dir" location="${build.dir}/classes" />
-
+	<property name="web_content.dir" location="${basedir}/WebContent" />
+	<property name="lib.dir" location="${web_content.dir}/WEB-INF/lib" />
+	<property name="war.file" location="${basedir}/KristjanLuik.war" />
 	<property name="ivylib.dir" location="${basedir}/lib" />
-	
-	<property name="webContent.dir" location="WebContent" />
-	<property name="war.file" location="luigewar.war" />
+	<property name="ivy.retrieve.pattern" value="${lib.dir}/[artifact][type][revision].[ext]" />
 
-	<property name="dir.lib" value="WebContent/WEB-INF/lib" />
-	<property name="ivy.retrieve.pattern" value="${dir.lib}/[artifact]-[type]-[revision].[ext]" />
-
-	<path id="classpath">
-		<fileset dir="lib">
-			<include name="*.jar" />
-		</fileset>
-
-		<fileset dir="${dir.lib}">
-			<include name="*.jar" />
-		</fileset>
-
-	</path>
-	
-	<path id="classpath.retrieve">
+	<path id="classpath.compile">
+		<!-- ivy tag -->
 		<fileset dir="${ivylib.dir}">
 			<include name="*.jar" />
 		</fileset>
-		<fileset dir="${dir.lib}">
+
+		<fileset dir="${lib.dir}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
 
-	<target name="war" depends="compile">
-		<war destfile="${war.file}" webxml="${webContent.dir}/WEB-INF/web.xml">
-			<classes dir="${classes.dir}" />
-			<fileset dir="${webContent.dir}" excludes="**/servlet-api-jar-2.5.jar" />
-		</war>
-	</target>
-
-	<target name="retrieve" description="retreive dependencies">
-		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="classpath.retrieve" />
-		<ivy:resolve file="${basedir}/ivy.xml" log="downloadonly" />
-		<ivy:retrieve pattern="${ivy.retrieve.pattern}" conf="default" />
-	</target>
-
-
+	<!-- compilation -->
 	<target name="compile" depends="clean, init, retrieve">
-		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" includeantruntime="false" classpathref="classpath" />
-
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="1.6" target="1.6" includeantruntime="false">
+			<classpath refid="classpath.compile" />
+		</javac>
 	</target>
-
 
 	<target name="init">
 		<mkdir dir="${classes.dir}" />
+
 	</target>
 
 	<target name="clean">
 		<delete dir="${build.dir}" />
 	</target>
 
+	<target name="war" depends="compile">
+		<war destfile="${war.file}" webxml="${web_content.dir}/WEB-INF/web.xml">
+			<classes dir="${classes.dir}" />
+			<fileset dir="${web_content.dir}" excludes="**/servlet-api-jar-2.5.jar" />
+
+			<zipfileset dir="${src.dir}" includes="*.sql" prefix="WEB-INF/classes" />
+		</war>
+	</target>
+
+	<!-- ivy jaride k2ttesaamiseks -->
+	<path id="classpath.retrieve">
+		<fileset dir="${ivylib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<target name="retrieve" description="retreive dependencies">
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="classpath.retrieve" />
+		<ivy:resolve file="${basedir}/ivy.xml" log="download-only" />
+		<ivy:retrieve pattern="${ivy.retrieve.pattern}" conf="default" />
+	</target>
 </project>
